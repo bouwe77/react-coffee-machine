@@ -5,24 +5,21 @@ import "./styles.css";
 export default function App() {
   const [status, setStatus] = useState("OFF");
   const [message, setMessage] = useState("");
-  const [startupInterval, setStartupInterval] = useState(1000);
+  const [startupInterval, setStartupInterval] = useState(null);
 
   function togglePower() {
-    let newStatus = "";
     if (status === "ON") {
-      newStatus = "OFF";
+      setStatus("OFF");
       setMessage("");
     } else if (status === "OFF") {
-      newStatus = "ON";
+      setStatus("ON");
       setMessage("Please wait...");
+      setStartupInterval(1000);
     }
-
-    setStatus(newStatus);
   }
 
   useInterval(() => {
     if (status !== "ON") return;
-    console.log("hoi");
     setMessage("Welcome!");
     setStartupInterval(null);
   }, startupInterval);
