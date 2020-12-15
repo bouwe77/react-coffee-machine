@@ -5,34 +5,63 @@ import "./styles.css";
 export default function App() {
   const [status, setStatus] = useState("OFF");
   const [message, setMessage] = useState("");
-  const [startupInterval, setStartupInterval] = useState(null);
+  const [interval, setInterval] = useState(null);
 
   function togglePower() {
     if (status === "ON") {
       setStatus("OFF");
       setMessage("");
     } else if (status === "OFF") {
-      setStatus("ON");
+      setStatus("STARTING");
       setMessage("Please wait...");
-      setStartupInterval(1000);
+      setInterval(1000);
     }
   }
 
   useInterval(() => {
-    if (status !== "ON") return;
-    setMessage("Welcome!");
-    setStartupInterval(null);
-  }, startupInterval);
+    if (status === "STARTING" || status === "FINISHED") {
+      setStatus("ON");
+      setMessage("Welcome!");
+      setInterval(null);
+    }
+
+    if (status === "PREPARING") {
+      setStatus("FINISHED");
+      setMessage("Enjoy!");
+      setInterval(1500);
+    }
+  }, interval);
+
+  function order(what) {
+    setStatus("PREPARING");
+    setMessage("Preparing, please wait...");
+    setInterval(1500);
+  }
 
   return (
     <div className="device">
-      <div className="screen">{message}</div>
+      <div className="screen">
+        {message}
+        {status === "ON" && (
+          <div>
+            <div>
+              <button onClick={() => order("coffee")}>Koffie</button>
+            </div>
+            <div>
+              <button onClick={() => order("espresso")}>Espresso</button>
+            </div>
+            <div>
+              <button onClick={() => order("cappuccino")}>Cappuccino</button>
+            </div>
+          </div>
+        )}
+      </div>
 
       <button
-        className={`powerButton ${status === "ON" && "on"}`}
+        className={`powerButton ${status !== "OFF" && "on"}`}
         onClick={togglePower}
       >
-        {status}
+        {status === "OFF" ? "OFF" : "ON"}
       </button>
     </div>
   );
