@@ -1,3 +1,10 @@
+* {
+  color: brown;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .device {
   border: 3px solid black;
   background-color: lightgray;
@@ -9,11 +16,7 @@
 }
 
 .screen {
-  color: brown;
-  font-family: "Courier New", Courier, monospace;
   font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
   width: 260px;
   height: 210px;
   background-color: black;
@@ -30,4 +33,12 @@
 
 .on {
   color: green;
+  border: 3px solid green;
+}
+
+.choose {
+  border: 1px solid brown;
+  background-color: transparent;
+  color: brown;
+  width: 100px;
 }

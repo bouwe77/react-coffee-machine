@@ -21,7 +21,7 @@ export default function App() {
   useInterval(() => {
     if (status === "STARTING" || status === "FINISHED") {
       setStatus("ON");
-      setMessage("Welcome!");
+      setMessage("What do you want?");
       setInterval(null);
     }
 
@@ -45,13 +45,19 @@ export default function App() {
         {status === "ON" && (
           <div>
             <div>
-              <button onClick={() => order("coffee")}>Koffie</button>
+              <button className="choose" onClick={() => order("coffee")}>
+                Coffee
+              </button>
             </div>
             <div>
-              <button onClick={() => order("espresso")}>Espresso</button>
+              <button className="choose" onClick={() => order("espresso")}>
+                Espresso
+              </button>
             </div>
             <div>
-              <button onClick={() => order("cappuccino")}>Cappuccino</button>
+              <button className="choose" onClick={() => order("cappuccino")}>
+                Cappuccino
+              </button>
             </div>
           </div>
         )}
