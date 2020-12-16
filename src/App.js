@@ -34,7 +34,7 @@ export default function App() {
 
   function order(what) {
     setStatus("PREPARING");
-    setMessage("Preparing, please wait...");
+    setMessage(`Preparing ${what}, please wait...`);
     setInterval(1500);
   }
 
