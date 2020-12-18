@@ -54,6 +54,7 @@ export default function App() {
           {status === "OFF" ? "OFF" : "ON"}
         </button>
       </div>
+      <footer>(useReducer)</footer>
     </div>
   );
 }
