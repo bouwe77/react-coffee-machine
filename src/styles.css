@@ -29,10 +29,10 @@ h1 {
 
 .screen {
   font-size: 16px;
-  height: 210px;
+  height: 150px;
   background-color: black;
   margin: 10px;
-  padding: 10px;
+  padding: 30px;
 }
 
 .powerButton {
@@ -52,5 +52,5 @@ h1 {
   background-color: transparent;
   color: brown;
   width: 100px;
-  margin: 5px;
+  margin: 10px;
 }

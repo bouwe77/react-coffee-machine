@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import useInterval from "./useInterval";
 import "./styles.css";
 
-const drinks = ["Tea", "Coffee", "Cappuccino"];
-
 export default function App() {
   const [status, setStatus] = useState("OFF");
   const [message, setMessage] = useState("");
@@ -39,23 +37,14 @@ export default function App() {
     setMessage(`Preparing ${what}...`);
     setInterval(1500);
   }
+
   return (
     <div className="app">
       <h1>Coffee Machine Simulator</h1>
       <div className="device">
         <div className="screen">
           {message}
-          {status === "ON" && (
-            <>
-              {drinks.map((drink) => (
-                <div key={drink}>
-                  <button className="choose" onClick={() => order(drink)}>
-                    {drink}
-                  </button>
-                </div>
-              ))}
-            </>
-          )}
+          {status === "ON" && <ChooseDrink order={order} />}
         </div>
 
         <button
@@ -66,5 +55,21 @@ export default function App() {
         </button>
       </div>
     </div>
+  );
+}
+
+function ChooseDrink({ order }) {
+  const drinks = ["Tea", "Coffee", "Cappuccino"];
+
+  return (
+    <>
+      {drinks.map((drink) => (
+        <div key={drink}>
+          <button className="choose" onClick={() => order(drink)}>
+            {drink}
+          </button>
+        </div>
+      ))}
+    </>
   );
 }
