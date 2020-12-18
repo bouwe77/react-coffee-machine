@@ -39,15 +39,14 @@ export default function App() {
     setMessage(`Preparing ${what}...`);
     setInterval(1500);
   }
-
   return (
-    <>
+    <div className="app">
       <h1>Coffee Machine Simulator</h1>
       <div className="device">
         <div className="screen">
           {message}
           {status === "ON" && (
-            <div>
+            <>
               {drinks.map((drink) => (
                 <div key={drink}>
                   <button className="choose" onClick={() => order(drink)}>
@@ -55,7 +54,7 @@ export default function App() {
                   </button>
                 </div>
               ))}
-            </div>
+            </>
           )}
         </div>
 
@@ -66,6 +65,6 @@ export default function App() {
           {status === "OFF" ? "OFF" : "ON"}
         </button>
       </div>
-    </>
+    </div>
   );
 }
