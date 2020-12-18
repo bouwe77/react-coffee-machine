@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import useInterval from "./useInterval";
 import "./styles.css";
 
+const drinks = ["Tea", "Coffee", "Cappuccino"];
+
 export default function App() {
   const [status, setStatus] = useState("OFF");
   const [message, setMessage] = useState("");
@@ -21,7 +23,7 @@ export default function App() {
   useInterval(() => {
     if (status === "STARTING" || status === "FINISHED") {
       setStatus("ON");
-      setMessage("What do you want?");
+      setMessage("What do you want to drink?");
       setInterval(null);
     }
 
@@ -34,41 +36,36 @@ export default function App() {
 
   function order(what) {
     setStatus("PREPARING");
-    setMessage(`Preparing ${what}, please wait...`);
+    setMessage(`Preparing ${what}...`);
     setInterval(1500);
   }
 
   return (
-    <div className="device">
-      <div className="screen">
-        {message}
-        {status === "ON" && (
-          <div>
+    <>
+      <h1>Coffee Machine Simulator</h1>
+      <div className="device">
+        <div className="screen">
+          {message}
+          {status === "ON" && (
             <div>
-              <button className="choose" onClick={() => order("coffee")}>
-                Coffee
-              </button>
+              {drinks.map((drink) => (
+                <div key={drink}>
+                  <button className="choose" onClick={() => order(drink)}>
+                    {drink}
+                  </button>
+                </div>
+              ))}
             </div>
-            <div>
-              <button className="choose" onClick={() => order("espresso")}>
-                Espresso
-              </button>
-            </div>
-            <div>
-              <button className="choose" onClick={() => order("cappuccino")}>
-                Cappuccino
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      <button
-        className={`powerButton ${status !== "OFF" && "on"}`}
-        onClick={togglePower}
-      >
-        {status === "OFF" ? "OFF" : "ON"}
-      </button>
-    </div>
+        <button
+          className={`powerButton ${status !== "OFF" && "on"}`}
+          onClick={togglePower}
+        >
+          {status === "OFF" ? "OFF" : "ON"}
+        </button>
+      </div>
+    </>
   );
 }

@@ -5,6 +5,10 @@
   text-transform: uppercase;
 }
 
+button:focus {
+  outline: 0;
+}
+
 .device {
   border: 3px solid black;
   background-color: lightgray;
@@ -16,7 +20,7 @@
 }
 
 .screen {
-  font-size: 20px;
+  font-size: 16px;
   width: 260px;
   height: 210px;
   background-color: black;
@@ -41,4 +45,5 @@
   background-color: transparent;
   color: brown;
   width: 100px;
+  margin: 5px;
 }
