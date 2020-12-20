@@ -1,2 +1,2 @@
-# useReducer
+# react-coffee-machine
 Created with CodeSandbox
